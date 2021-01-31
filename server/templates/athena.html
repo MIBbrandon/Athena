@@ -1,0 +1,80 @@
+<html>
+    <head>
+        {{ JSGlue.include() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vis.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainCSS.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+    <script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+    <style type="text/css">
+
+            #mynetwork {
+                width: 100%;
+                height: 100%;
+                background-color: #222222;
+                border: 1px solid lightgray;
+                position: relative;
+                float: left;
+            }
+
+            
+
+            
+            #config {
+                float: left;
+                width: 400px;
+                height: 600px;
+            }
+            
+
+            
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    </head>
+
+<body>
+<div id = "mynetwork"></div>
+
+<div id = "submission">
+    <input type="text" id="submissionGSwaps" name="submissionGSwaps">
+    <input type="text" id="submissionGInteractions" name="submissionGInteractions">
+    <input type="text" id="submissionSODDI" name="submissionSODDI">
+</div>
+<div id = "buttonsSubmission">
+    <button onclick="submit()">Submit</button>
+    <button onclick="updateGraphToInputs()">Update graph</button>
+</div>
+<div id = "random">
+    <input type="text" id="numNodes" name="numNodes">
+    <input type="text" id="soddiLength" name="soddiLength">
+    <input type="text" id="edgeCreationChance" name="edgeCreationChance">
+</div>
+<div id = "buttonsRandom">
+    <button onclick="obtainConstrainedRandomGraph()">Random graph with constraints</button>
+    <button onclick="obtainRandomGraph()">Random graph</button>
+</div>
+<div id = "steps">
+    <button onclick="stepBackwards()">Show previous step</button>
+    <button onclick="stepForwards()">Show next step</button>
+</div>
+
+<div id = "target1"></div>
+<div id = "target2"></div>
+
+<div id = "config">
+
+</div>
+<script src="{{url_for('static', filename='js/drawing/drawGraph.js')}}"></script>
+<script src="{{url_for('static', filename='js/drawing/updateGraphToInputs.js')}}"></script>
+<script src="{{url_for('static', filename='js/drawing/obtainRandomGraphFunctions.js')}}"></script>
+<script src="{{url_for('static', filename='js/stepping/submit.js')}}"></script>
+<script src="{{url_for('static', filename='js/stepping/stepFunctions.js')}}"></script>
+<script src="{{url_for('static', filename='js/mainJS.js')}}"></script>
+
+</body>
+</html>
