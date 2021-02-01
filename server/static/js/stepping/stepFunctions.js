@@ -33,25 +33,36 @@ function stepForwards() {
             }
         }catch(err){}; 
         currentIndex++;  //Move onto the next step
+        if(currentIndex == (stepsSolution.length - 1)) {
+            document.getElementById("target2").innerHTML = "All steps have been completed";
+            document.getElementById("next_step_button").classList.add("w3-disabled");
+        }
+
+        //Nodes of interest
+        let n1 = ids.indexOf(soddi[currentSoddiIndex][0]);
+        let n2 = ids.indexOf(soddi[currentSoddiIndex][1]);
+
         if(!("#").localeCompare(stepsSolution[currentIndex])) {
             //End of desired interaction reached, so show that this interaction has been completed
             edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_done"], 
-            "from": ids.indexOf(soddi[currentSoddiIndex][0]), "to": ids.indexOf(soddi[currentSoddiIndex][1]), 
+            "from": n1, "to": n2, 
             "width": stepEdgesAtrributes["edge_width_done"], arrowStrikethrough: false};
 
             window.edges.update([edge1ToAdd]);
             window.network.redraw();
-            window.network.selectNodes([ids.indexOf(soddi[currentSoddiIndex][0]), ids.indexOf(soddi[currentSoddiIndex][1])]);
+            window.network.selectNodes([n1, n2]);
+            document.getElementById("just_swapped").innerHTML = "Latest action: allowed interaction " + soddi[currentSoddiIndex][0] + "->" + soddi[currentSoddiIndex][1];
         }
         else if (!("Done already").localeCompare(stepsSolution[currentIndex])) {
             //Interaction is already established, so show it
             edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_done"], 
-            "from": ids.indexOf(soddi[currentSoddiIndex][0]), "to": ids.indexOf(soddi[currentSoddiIndex][1]), 
+            "from": n1, "to": n2, 
             "width": stepEdgesAtrributes["edge_width_done"], arrowStrikethrough: false};
 
             window.edges.update([edge1ToAdd]);
             window.network.redraw();
-            window.network.selectNodes([ids.indexOf(soddi[currentSoddiIndex][0]), ids.indexOf(soddi[currentSoddiIndex][1])]);
+            window.network.selectNodes([n1, n2]);
+            document.getElementById("just_swapped").innerHTML = "Latest action: allowed interaction " + soddi[currentSoddiIndex][0] + "->" + soddi[currentSoddiIndex][1];
         }
         else {
             //Start the process of showing the next elements
@@ -79,11 +90,15 @@ function stepForwards() {
             //Updating ids accordingly
             ids[firstNode] = secondNodeLabel;
             ids[secondNode] = firstNodeLabel;
+
+            //Display what was just swapped
+            document.getElementById("just_swapped").innerHTML = "Latest action: swapped (" + firstNodeLabel + ", " + secondNodeLabel + ")"; 
         }
     }
     
 }
 
+// TODO: make this actually work
 function stepBackwards() {
     
     if (currentIndex == undefined) {

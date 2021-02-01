@@ -31,7 +31,11 @@ function updateGraphToInputs() {
             stepNodesAttributes = undefined;
             stepEdgesAtrributes = undefined;
             ids = undefined;
-            document.getElementById("target1").innerHTML = "";
+            clearSODDItext();
         }
     };
+}
+
+function centerGraph() {
+    network.fit();
 }

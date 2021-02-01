@@ -1,77 +1,90 @@
 <html>
     <head>
         {{ JSGlue.include() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/vis.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainCSS.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+        <title>Athena</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/athena.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
-    <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
-    <script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+        <script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
 
-    <style type="text/css">
-
-            #mynetwork {
-                width: 100%;
-                height: 100%;
-                background-color: #222222;
-                border: 1px solid lightgray;
-                position: relative;
-                float: left;
-            }
-
-            
-
-            
-            #config {
-                float: left;
-                width: 400px;
-                height: 600px;
-            }
-            
-
-            
-    </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     </head>
 
 <body>
+    
 <div id = "mynetwork"></div>
 
-<div id = "submission">
-    <input type="text" id="submissionGSwaps" name="submissionGSwaps">
-    <input type="text" id="submissionGInteractions" name="submissionGInteractions">
-    <input type="text" id="submissionSODDI" name="submissionSODDI">
-</div>
-<div id = "buttonsSubmission">
-    <button onclick="submit()">Submit</button>
-    <button onclick="updateGraphToInputs()">Update graph</button>
-</div>
-<div id = "random">
-    <input type="text" id="numNodes" name="numNodes">
-    <input type="text" id="soddiLength" name="soddiLength">
-    <input type="text" id="edgeCreationChance" name="edgeCreationChance">
-</div>
-<div id = "buttonsRandom">
-    <button onclick="obtainConstrainedRandomGraph()">Random graph with constraints</button>
-    <button onclick="obtainRandomGraph()">Random graph</button>
-</div>
-<div id = "steps">
-    <button onclick="stepBackwards()">Show previous step</button>
-    <button onclick="stepForwards()">Show next step</button>
-</div>
-
-<div id = "target1"></div>
-<div id = "target2"></div>
-
 <div id = "config">
+    <div id = "graph_details" class = "config-section">
+        <h3>Graph</h3>
+        <div id = "submission">
+            <label for="submissionGSwaps">Swap Edges</label>
+            <input class="w3-input w3-round-large" type="text" id="submissionGSwaps" name="submissionGSwaps">
+            <br>
+            <label for="submissionGInteractions">Interaction Edges</label>
+            <input class="w3-input w3-round-large" type="text" id="submissionGInteractions" name="submissionGInteractions">
+            <br>
+        </div>
+        <div id = "buttonsSubmission">
+            <button class="w3-btn w3-ripple w3-round-large" onclick="updateGraphToInputs()">Update</button>
+            <button class="w3-btn w3-ripple w3-round-large" onclick="centerGraph()">Center</button>
+        </div>
+    </div>
 
+    <div id = "SODDI stepping" class = "config-section">
+        <h3>SODDI stepping</h3>
+        <div id = "steps">
+            <label for="submissionSODDI">Sequence of desired direct interactions</label>
+            <input class="w3-input w3-round-large" type="text" id="submissionSODDI" name="submissionSODDI">
+            <br>
+            <div id = "target1"></div>
+            <div id = "target2"></div>
+            <div id = "just_swapped"></div>
+            <button class="w3-btn w3-ripple w3-round-large" onclick="submit()">Submit / Reset</button>
+            <!-- TODO: Make stepBackwards() actually work -->
+            <!-- <button class="w3-btn w3-ripple w3-round-large" onclick="stepBackwards()">Show previous step</button> -->
+            <button class="w3-btn w3-ripple w3-round-large" id="next_step_button" onclick="stepForwards()">Next step</button>
+        </div>
+        <div id = "all_steps"></div>
+        
+    </div>
+
+    
+
+    <div id = "Randomizer" class = "config-section">
+        <h3>Randomizer</h3>
+        <div id = "random">
+            <label for="numNodes">Number of nodes</label>
+            <input class="w3-input w3-round-large" type="text" id="numNodes" name="numNodes">
+            <br>
+            <label for="soddiLength">Length of SODDI</label>
+            <input class="w3-input w3-round-large" type="text" id="soddiLength" name="soddiLength">
+            <br>
+            <label for="swapEdgeCreationChance">Swap edge probability</label>
+            <input class="w3-input w3-round-large" type="text" id="swapEdgeCreationChance" name="swapEdgeCreationChance">
+            <br>
+            <label for="interactionEdgeCreationChance">Interaction edge probability</label>
+            <input class="w3-input w3-round-large" type="text" id="interactionEdgeCreationChance" name="interactionEdgeCreationChance">
+        </div>
+        <div id = "buttonsRandom">
+            <button class="w3-btn w3-ripple w3-round-large" onclick="obtainConstrainedRandomGraph()">Random graph with constraints</button>
+            <button class="w3-btn w3-ripple w3-round-large" onclick="obtainRandomGraph()">Random graph</button>
+        </div>
+    </div>
+
+
+    
 </div>
+
 <script src="{{url_for('static', filename='js/drawing/drawGraph.js')}}"></script>
 <script src="{{url_for('static', filename='js/drawing/updateGraphToInputs.js')}}"></script>
-<script src="{{url_for('static', filename='js/drawing/obtainRandomGraphFunctions.js')}}"></script>
+<script src="{{url_for('static', filename='js/drawing/obtainRandomFunctions.js')}}"></script>
 <script src="{{url_for('static', filename='js/stepping/submit.js')}}"></script>
 <script src="{{url_for('static', filename='js/stepping/stepFunctions.js')}}"></script>
 <script src="{{url_for('static', filename='js/mainJS.js')}}"></script>

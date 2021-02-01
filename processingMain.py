@@ -1,3 +1,4 @@
+import itertools
 import math
 import sys
 
@@ -14,21 +15,21 @@ script_dir = os.path.dirname(__file__)
 edgelist_dir = os.path.join(script_dir, "edgelist.txt")
 
 
-def obtainRandomValidInputForJS(numNodes, soddiLength, edgeCreationChance=0.4):
+def obtainRandomValidInputForJS(numNodes, soddiLength, swapEdgeCreationChance=0.4, interactionEdgeCreationChance=0.1):
     G_swaps = None
     connected = False
     planar = False
     while not (connected and planar):
-        G_swaps = nx.erdos_renyi_graph(numNodes, edgeCreationChance, directed=False)
+        G_swaps = nx.erdos_renyi_graph(numNodes, swapEdgeCreationChance, directed=False)
         connected = nx.is_connected(G_swaps)
         planar = nx.check_planarity(G_swaps)
 
     G_interactions = nx.DiGraph()
-    while len(G_interactions) < 1:
-        for i in range(numNodes*2):
-            gSwapsNodes = list(G_swaps.nodes)
-            random.shuffle(gSwapsNodes)
-            G_interactions.add_edge(gSwapsNodes[0], gSwapsNodes[1])
+    gSwapsNodes = list(G_swaps.nodes)
+
+    for e in itertools.permutations(gSwapsNodes, 2):
+        if random.uniform(0, 1) < interactionEdgeCreationChance:
+            G_interactions.add_edge(e[0], e[1])
 
 
     soddi = []

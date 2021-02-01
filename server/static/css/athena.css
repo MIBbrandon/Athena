@@ -1,0 +1,83 @@
+body {
+    background-color: #252f9c;
+}
+
+/* Network visualization */
+#mynetwork {
+    width: 90%;
+    height: 95%;
+    margin: 10px 0px 10px 5px;
+    float: left;
+    background-color: #222222;
+    border-radius: 20px;
+    float: left;
+}
+
+/* The entire configuration area */
+#config {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display: inline-block;
+    width: 90%;
+    height: 95%;
+    margin: 10px 0px 10px 5px;
+}
+    #config h3 {
+        margin-top: 0;
+    }
+
+    /* General attributes of the sections */
+    .config-section {
+        width: auto;
+        background-color: midnightblue;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        border-width: 5px;
+        border-color: white;
+    }
+
+    .config-section .w3-btn {
+        margin: 5px 2px;
+        border-color: white;
+        background-color: #252f9c;
+    }
+
+
+    /* Graph Details */
+
+    
+
+
+    /* Randomizer */
+    #Randomizer .w3-input {
+        width: 50px;
+        padding: 2px;
+        margin: 2px;
+        display: inline;
+    }
+
+
+
+    /* SODDI stepping */
+
+
+
+/* LAPTOP VIEW */
+@media only screen and (min-width: 768px) {
+    /* body {
+      background-color: red;
+    } */
+    #mynetwork {
+        width: 60%;
+        height: 95%;
+        margin-right: 5px;
+    }
+    #config {
+        width: 36%;
+        height: 95%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+  }

@@ -68,12 +68,17 @@ def obtainRandomValidInputMethod():
         print(jsondata)
         try:
             numNodes = int(jsondata['numNodes'])
+            print(numNodes)
             soddiLength = int(jsondata['soddiLength'])
-            edgeCreationChance = float(jsondata['edgeCreationChance'])
+            print(soddiLength)
+            swapEdgeCreationChance = float(jsondata['swapEdgeCreationChance'])
+            print(swapEdgeCreationChance)
+            interactionEdgeCreationChance = float(jsondata['interactionEdgeCreationChance'])
+            print(interactionEdgeCreationChance)
         except:
             print("Invalid input received from client")
             return {"ERROR": "INVALID INPUT"}
-        return obtainRandomValidInputForJS(numNodes, soddiLength, edgeCreationChance)
+        return obtainRandomValidInputForJS(numNodes, soddiLength, swapEdgeCreationChance, interactionEdgeCreationChance)
     return {"ERROR": "INVALID METHOD"}
 
 @app.route("/processNodesAndEdgesForJSVisualMethod", methods=["POST"])

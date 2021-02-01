@@ -3,7 +3,8 @@ function obtainConstrainedRandomGraph() {
     var inputStructure = {
         'numNodes': $("#numNodes").val(),
         'soddiLength': $("#soddiLength").val(),
-        'edgeCreationChance': $("#edgeCreationChance").val(),
+        'swapEdgeCreationChance': $("#swapEdgeCreationChance").val(),
+        'interactionEdgeCreationChance': $("#interactionEdgeCreationChance").val(),
     };
     var jsonString = JSON.stringify(inputStructure);
     const xhr = new XMLHttpRequest();
@@ -27,16 +28,25 @@ function obtainConstrainedRandomGraph() {
             //Reset stepFunctions variables
             window.currentIndex = undefined;
             window.stepsSolution = undefined;
-            document.getElementById("target1").innerHTML = "";
-            document.getElementById("target2").innerHTML = "";
+            clearSODDItext()  //submit.js function to clear text of that section
         }
     };
 }
 
 function obtainRandomGraph() {
     //Create initial inputs
-    document.getElementById("numNodes").value = Math.floor((Math.random()*30) + 2); // Number of nodes (minimum 2 nodes)
-    document.getElementById("soddiLength").value = Math.floor((Math.random()*30) + 1); //Number of desired interactions
-    document.getElementById("edgeCreationChance").value = Math.max(Math.random(), 0.25); //Probability of edges existing
+    // These are somewhat arbitrary, but they generally produce interesting situations
+
+    // Number of nodes (minimum 2 nodes)
+    document.getElementById("numNodes").value = Math.floor((Math.random()*30) + 2);
+
+    //Number of desired interactions
+    document.getElementById("soddiLength").value = Math.floor((Math.random()*30) + 1);
+
+    //Probability of swap edges existing
+    document.getElementById("swapEdgeCreationChance").value = Math.round(Math.max(Math.random(), 0.25)*1000)/1000;
+
+    //Probability of interaction edges existing
+    document.getElementById("interactionEdgeCreationChance").value = Math.round(Math.random()*(0.7 - 0.1)*1000)/1000;
     obtainConstrainedRandomGraph()
 }
