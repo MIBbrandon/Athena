@@ -19,12 +19,18 @@ function stepForwards() {
         document.getElementById("target2").innerHTML = "All steps have been completed";
     }
     else {
-        // Remove whatever extra nodes and edges that have been added previously for visual effects
+        //Remove whatever extra nodes and edges that have been added previously for visual effects
         try {
             window.edges.remove([99999]);
             window.edges.remove([99998]);
         }
         catch(err) {}
+
+        //Make last nodes return to normal size
+        window.nodes.update([{id: lastN1, font: {size: 50}}, {id: lastN2, font: {size: 50}}]);
+
+
+        //Clear some text
         document.getElementById("target2").innerHTML = "";
         //Before moving to the next step, if this step marks the end of a desired interaction, move onto the next one
         try {  //In a try-catch so that when index is out of bounds (like when submitting, for example), it just skips this section
@@ -48,6 +54,11 @@ function stepForwards() {
             "from": n1, "to": n2, 
             "width": stepEdgesAtrributes["edge_width_done"], arrowStrikethrough: false};
 
+            //Make nodes bigger for visibility
+            window.lastN1 = n1;
+            window.lastN2 = n2;
+            window.nodes.update([{id: n1, font: {size: 100}}, {id: n2, font: {size: 100}}]);
+
             window.edges.update([edge1ToAdd]);
             window.network.redraw();
             window.network.selectNodes([n1, n2]);
@@ -58,6 +69,11 @@ function stepForwards() {
             edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_done"], 
             "from": n1, "to": n2, 
             "width": stepEdgesAtrributes["edge_width_done"], arrowStrikethrough: false};
+
+            //Make nodes bigger for visibility
+            window.lastN1 = n1;
+            window.lastN2 = n2;
+            window.nodes.update([{id: n1, font: {size: 100}}, {id: n2, font: {size: 100}}]);
 
             window.edges.update([edge1ToAdd]);
             window.network.redraw();
@@ -71,6 +87,11 @@ function stepForwards() {
             secondNodeLabel = stepsSolution[currentIndex][1];
             firstNode = ids.indexOf(firstNodeLabel);
             secondNode = ids.indexOf(secondNodeLabel);
+
+            //Make nodes bigger for visibility
+            window.lastN1 = firstNode;
+            window.lastN2 = secondNode;
+            window.nodes.update([{id: firstNode, font: {size: 100}}, {id: secondNode, font: {size: 100}}]);
 
             edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_std"], 
             "from": firstNode, "to": secondNode, 

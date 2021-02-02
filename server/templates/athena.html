@@ -9,9 +9,6 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
-        <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
-        <script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     </head>
@@ -52,10 +49,7 @@
             <button class="w3-btn w3-ripple w3-round-large" id="next_step_button" onclick="stepForwards()">Next step</button>
         </div>
         <div id = "all_steps"></div>
-        
     </div>
-
-    
 
     <div id = "Randomizer" class = "config-section">
         <h3>Randomizer</h3>
@@ -75,6 +69,25 @@
         <div id = "buttonsRandom">
             <button class="w3-btn w3-ripple w3-round-large" onclick="obtainConstrainedRandomGraph()">Random graph with constraints</button>
             <button class="w3-btn w3-ripple w3-round-large" onclick="obtainRandomGraph()">Random graph</button>
+        </div>
+    </div>
+
+    <div id = "Legend" class = "config-section">
+        <h3>Legend</h3>
+        <div id = "graph_legend" class = "legend_section">
+            <h4>Graph</h4>
+            <ul>
+                <li>Swap <a id = "swap_legend">■</a></li>
+                <li>Interaction <a id = "interaction_legend">■</a></li>
+                <li>Swap & Interaction <a id = "swap_and_interaction_legend">■</a></li>
+            </ul>
+        </div>
+        <div id = "soddi_legend" class = "legend_section">
+            <h4>SODDI</h4>
+            <ul>
+                <li>Latest swap <a id = "latest_swap_legend">■</a></li>
+                <li>Latest interaction <a id = "latest_interaction_legend">■</a></li>
+            </ul>
         </div>
     </div>
 
