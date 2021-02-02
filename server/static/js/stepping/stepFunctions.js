@@ -6,8 +6,9 @@ var stepsSolution;  //Holds list with steps
 var stepNodesAttributes;
 var stepEdgesAtrributes;
 var ids;
+var lastN1;
+var lastN2;
 
-//TODO: complete these functions to draw the new arrows and nodes to represent the swaps step by step
 function stepForwards() {
     if (currentIndex == undefined) {
         document.getElementById("target2").innerHTML = "Please submit soddi first!";
@@ -27,8 +28,9 @@ function stepForwards() {
         catch(err) {}
 
         //Make last nodes return to normal size
-        window.nodes.update([{id: lastN1, font: {size: 50}}, {id: lastN2, font: {size: 50}}]);
-
+        if (lastN1 != undefined && lastN2 != undefined) { //Check to not create new nodes
+            window.nodes.update([{id: lastN1, font: {size: 50}}, {id: lastN2, font: {size: 50}}]);
+        }
 
         //Clear some text
         document.getElementById("target2").innerHTML = "";
@@ -48,24 +50,8 @@ function stepForwards() {
         let n1 = ids.indexOf(soddi[currentSoddiIndex][0]);
         let n2 = ids.indexOf(soddi[currentSoddiIndex][1]);
 
-        if(!("#").localeCompare(stepsSolution[currentIndex])) {
-            //End of desired interaction reached, so show that this interaction has been completed
-            edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_done"], 
-            "from": n1, "to": n2, 
-            "width": stepEdgesAtrributes["edge_width_done"], arrowStrikethrough: false};
-
-            //Make nodes bigger for visibility
-            window.lastN1 = n1;
-            window.lastN2 = n2;
-            window.nodes.update([{id: n1, font: {size: 100}}, {id: n2, font: {size: 100}}]);
-
-            window.edges.update([edge1ToAdd]);
-            window.network.redraw();
-            window.network.selectNodes([n1, n2]);
-            document.getElementById("just_swapped").innerHTML = "Latest action: allowed interaction " + soddi[currentSoddiIndex][0] + "->" + soddi[currentSoddiIndex][1];
-        }
-        else if (!("Done already").localeCompare(stepsSolution[currentIndex])) {
-            //Interaction is already established, so show it
+        if(!("#").localeCompare(stepsSolution[currentIndex]) || !("Done already").localeCompare(stepsSolution[currentIndex])) {
+            //Desired interaction reached, so show that this interaction has been completed
             edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_done"], 
             "from": n1, "to": n2, 
             "width": stepEdgesAtrributes["edge_width_done"], arrowStrikethrough: false};
@@ -82,17 +68,17 @@ function stepForwards() {
         }
         else {
             //Start the process of showing the next elements
-            //First draw arrow between the two nodes being swapped
             firstNodeLabel = stepsSolution[currentIndex][0];
             secondNodeLabel = stepsSolution[currentIndex][1];
             firstNode = ids.indexOf(firstNodeLabel);
             secondNode = ids.indexOf(secondNodeLabel);
 
-            //Make nodes bigger for visibility
+            //Make relevant nodes bigger for visibility
             window.lastN1 = firstNode;
             window.lastN2 = secondNode;
             window.nodes.update([{id: firstNode, font: {size: 100}}, {id: secondNode, font: {size: 100}}]);
 
+            //First draw arrow between the two nodes being swapped
             edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_std"], 
             "from": firstNode, "to": secondNode, 
             "width": stepEdgesAtrributes["edge_width_std"], arrowStrikethrough: false};
