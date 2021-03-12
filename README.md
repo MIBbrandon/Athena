@@ -1,7 +1,7 @@
 # Athena
 Qubit routing graph visualization
 <p align="center">
-  <img width=450 src="https://github.com/MIBbrandon/Athena/blob/just-athena/images/projectAthena2.png" />
+  <img width=450 src="https://github.com/MIBbrandon/Athena/blob/just-athena/media/images/projectAthena2.png" />
 </p>
 
 An important part of NISQ devices is the execution of algorithms as fast as possible before decoherence catches up to our qubits, which then result in undesireable errors. One of the current limitations on the execution speed of algorithms is the hardware.
