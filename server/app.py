@@ -12,10 +12,6 @@ jsglue = JSGlue(app)
 
 @app.route('/', methods=["GET", "POST"])
 def indexPage():
-    return render_template("index.html")
-
-@app.route('/athena', methods=["GET", "POST"])
-def athenaPage():
     return render_template("athena.html")
 
 @app.route('/favicon.ico', methods=["GET"])
