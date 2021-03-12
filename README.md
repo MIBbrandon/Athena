@@ -21,11 +21,11 @@ First of all, you'll want to download the repository as a zip file or clone it. 
 
 Then, once the server is running and you've accessed the page, you should see something like this:
 
-INSERT IMAGE OF LANDING PAGE HERE
+<p align="center">
+  <img src="https://github.com/MIBbrandon/Athena/blob/just-athena/media/gifs/ath-show_landing.gif" />
+</p>
 
 On the left side, there is a graph with nodes that spread out in a circumference. If you hover the mouse over the nodes, you'll see that each one has a label (which is the number that you can see without hovering the mouse) and an ID (which identifies each node uniquely, obviously). Each one of these nodes has directed edges leading to other nodes. There are three kinds of edges, whose meanings can be found in the legend.
-
-INSERT IMAGE OF LEGEND
 
 The blue edges represent the swappable qubits, the yellow edges represent available direct interactions, and the pink edges represent interaction edges that overlap with a swap edge, for better visibility. 
 
@@ -35,12 +35,27 @@ These edges mean that whenever two qubits are connected by a blue edge, they can
 On the right side (or at the bottom on mobile), there is a configuration panel with varios sections.
 
 #### Graph
+
+<p align="center">
+  <img src="https://github.com/MIBbrandon/Athena/blob/just-athena/media/gifs/ath-show_graph.gif" />
+</p>
+
 In the graph configuration section, there are two text fields: "Swap Edges" and "Interaction Edges". They contain lists of tuples, which represent the swap and interaction edges of the graph respectively. If you want, you can add or remove an edge in the "Swap Edges" field at will (the nodes are added as the swap edges require them to exist), but adding an interaction in the "Interaction Edges" must obviously involve existing edges. When you click "Update", the graph will represent your changes, and clicking on "Center" will center the graph in case you dragged around the screen accidentally and got lost.
 
 #### Randomizer
+
+<p align="center">
+  <img src="https://github.com/MIBbrandon/Athena/blob/just-athena/media/gifs/ath-show_randomizer.gif" />
+</p>
+
 This section randomizes both the graph and the Sequence Of Desired Direct Interactions (SODDI). If you want to create a whole new graph, click on "Randomize graph". This will change the graph and the SODDI (since it must request interactions for nodes that exist). If you want to create a random graph, but want a specific number of nodes, a different length of the SODDI or even alter the probability that an edge will be made between two nodes (swap or interaction), then you can do so by entering the desired values and clicking on "Random graph with constraints".
 
 #### SODDI stepping
+
+<p align="center">
+  <img src="https://github.com/MIBbrandon/Athena/blob/just-athena/media/gifs/ath-show_soddi.gif" />
+</p>
+
 In the Sequence Of Desired Direct Interactions (SODDI) section, there is one text field: "Sequence Of Desired Direct Interactions". This is the order in which you want two qubits (well, more specifically two states/labels) to interact. Again, the involved nodes must exist in the graph. In the text field, you can specify the interactions you want to happen, and the order in which they happen. You can click on "Submit/Reset" in order to calculate what the best course of action for swapping and interacting. Once you've received a result, you can click on "Next step" to start going through each step.
 
 You will notice that the graph now has two nodes that are bigger in size, and that there is an edge with a different colour between these two nodes. If you look at the legend, it will tell you that the latest swap that happened is represented by a white edge, and that the latest interaction is represented by a green edge.
