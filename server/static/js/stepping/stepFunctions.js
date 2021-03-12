@@ -76,7 +76,7 @@ function stepForwards() {
             //Make relevant nodes bigger for visibility
             window.lastN1 = firstNode;
             window.lastN2 = secondNode;
-            window.nodes.update([{id: firstNode, font: {size: 100}}, {id: secondNode, font: {size: 100}}]);
+            window.nodes.update([{id: firstNode, font: {size: 70}}, {id: secondNode, font: {size: 100}}]);
 
             //First draw arrow between the two nodes being swapped
             edge1ToAdd = {"id":99999, "arrows": "to", "color": stepEdgesAtrributes["edge_colour_std"], 
