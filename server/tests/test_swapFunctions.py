@@ -1,9 +1,9 @@
 import unittest
 import networkx as nx
 
-from critics.inputCritics import checkingG_swaps, checkingG_interactions, checkingSODDI
-from searching.searchFunctions import bfsCheckingNeighbours, findBestPinPenCombo
-from swapping.swapFunctions import representSwaps, CONST_notListOfIntsOrNotBool, executeSwaps, swapsRequired
+from server.critics.inputCritics import checkingG_swaps, checkingG_interactions, checkingSODDI
+from server.searching.searchFunctions import bfsCheckingNeighbours, findBestPinPenCombo
+from server.swapping.swapFunctions import representSwaps, CONST_notListOfIntsOrNotBool, executeSwaps, swapsRequired
 
 
 class TestRepresentSwaps(unittest.TestCase):

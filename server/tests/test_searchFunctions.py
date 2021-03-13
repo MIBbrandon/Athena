@@ -1,7 +1,7 @@
 import unittest
 import networkx as nx
 
-from searching.searchFunctions import findActiveNeighbours, CONST_gInteractionsHasNoActiveOrPassiveNodesMSG, \
+from server.searching.searchFunctions import findActiveNeighbours, CONST_gInteractionsHasNoActiveOrPassiveNodesMSG, \
 	bfsCheckingNeighbours, findBestPendulumForPin, findBestPinPenCombo, mergePaths
 
 

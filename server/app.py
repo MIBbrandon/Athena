@@ -1,6 +1,7 @@
 import ast
 import json
 import os
+import importlib.util
 
 from processingMain import coreExecution, processNodesAndEdgesForJSVisual, obtainRandomValidInputForJS
 

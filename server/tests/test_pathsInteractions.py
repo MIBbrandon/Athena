@@ -1,8 +1,8 @@
 import unittest
 import networkx as nx
 
-from evaluation.pathsInteractions import evaluatePathsInteraction
-from searching.searchFunctions import bfsCheckingNeighbours
+from server.evaluation.pathsInteractions import evaluatePathsInteraction
+from server.searching.searchFunctions import bfsCheckingNeighbours
 
 
 class TestEvaluatePathsInteractions(unittest.TestCase):

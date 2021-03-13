@@ -16,7 +16,7 @@ There are already great tools to organize these qubits and their paths to a cert
 
 
 ## How to use
-First of all, you'll want to download the repository as a zip file or clone it. Then you must run app.py, which uses the Flask framework so that it can all be interactive in your browser.
+First of all, you'll want to download the repository as a zip file or clone it. Then you must run app.py within /server, which uses the Flask framework so that it can be interactive in your browser.
 
 
 Then, once the server is running and you've accessed the page, you should see something like this:
