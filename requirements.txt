@@ -1,0 +1,4 @@
+networkx
+matplotlib
+flask
+flask-jsglue
